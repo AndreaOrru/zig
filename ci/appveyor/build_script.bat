@@ -9,4 +9,4 @@ bash -lc "pacman -S --needed --noconfirm make mingw64/mingw-w64-x86_64-make ming
 
 bash -lc "ls /mingw64/lib"
 
-bash -lc "cd ${APPVEYOR_BUILD_FOLDER} && mkdir build && cd build && cmake .. -G""MSYS Makefiles"" -DCMAKE_INSTALL_PREFIX=$(pwd) -DCMAKE_PREFIX_PATH=/mingw64 -DZIG_LIBC_LIB_DIR=$(dirname $(cc -print-file-name=crt1.o)) -DZIG_LIBC_INCLUDE_DIR=$(echo -n | cc -E -x c - -v 2>&1 | grep -B1 ""End of search list."" | head -n1 | cut -c 2- | sed ""s/ .*//"") -DZIG_LIBC_STATIC_LIB_DIR=$(dirname $(cc -print-file-name=crtbegin.o)) && make && make install"
+bash -lc "cd ${APPVEYOR_BUILD_FOLDER} && mkdir build && cd build && cmake .. -G""MSYS Makefiles"" -DCMAKE_INSTALL_PREFIX=$(pwd) -DCMAKE_SYSTEM_PREFIX_PATH=/mingw64 -DZIG_LIBC_LIB_DIR=$(dirname $(cc -print-file-name=crt1.o)) -DZIG_LIBC_INCLUDE_DIR=$(echo -n | cc -E -x c - -v 2>&1 | grep -B1 ""End of search list."" | head -n1 | cut -c 2- | sed ""s/ .*//"") -DZIG_LIBC_STATIC_LIB_DIR=$(dirname $(cc -print-file-name=crtbegin.o)) && make && make install"
