@@ -1,7 +1,6 @@
+echo %APPVEYOR_BUILD_FOLDER%
 cd %APPVEYOR_BUILD_FOLDER%
-echo MSYS2 directory: %MSYS2_DIR%
-echo MSYS2 system: %MSYSTEM%
-SET "PATH=C:\%MSYS2_DIR%\%MSYSTEM%\bin;C:\%MSYS2_DIR%\usr\bin;%PATH%"
+SET "PATH=C:\msys64\mingw64\bin;C:\msys64\usr\bin;%PATH%"
 
 bash -lc "pacman -Syu --noconfirm"
 bash -lc "pacman -Su --noconfirm"
